@@ -158,10 +158,10 @@ if page == 'Clinic Overview':
         return pd.read_excel('allerx_clinic_Dec.xlsx', index_col = 0)
     df_clinic_12 = load_clinic_data_12()
     #01
-    @st.cache_data
-    def load_clinic_data_01():
-        return pd.read_excel('allerx_clinic_Jan.xlsx', index_col = 0)
-    df_clinic_01 = load_clinic_data_01()
+    # @st.cache_data
+    # def load_clinic_data_01():
+    #     return pd.read_excel('allerx_clinic_Jan.xlsx', index_col = 0)
+    # df_clinic_01 = load_clinic_data_01()
 
     def collected_color(val):
         if val >= 40:
@@ -254,31 +254,31 @@ if page == 'Clinic Overview':
     .map(collected_color, subset=['order_collected_%'])
     .map(cancelled_color, subset=['order_cancelled_%'])
     )
-    styled_table_01 = (
-    df_clinic_01.style.set_table_styles([
-        {
-            'selector': 'th',
-            'props': [
-                ('background-color', '#1f4fd8'),
-                ('color', 'white'),
-                ('font-weight', 'bold'),
-                ('text-align', 'center')]
-        },
-        {
-            'selector': 'td',
-            'props': [
-                ('text-align', 'center'),   # ✅ أهم سطر
-                ('vertical-align', 'middle')]
-        },
-        {
-            'selector': 'tr:last-child',
-            'props': [
-                ('background-color', '#e5e7eb'),
-                ('font-weight', 'bold')]
-        }])
-    .map(collected_color, subset=['order_collected_%'])
-    .map(cancelled_color, subset=['order_cancelled_%'])
-    )
+    # styled_table_01 = (
+    # df_clinic_01.style.set_table_styles([
+    #     {
+    #         'selector': 'th',
+    #         'props': [
+    #             ('background-color', '#1f4fd8'),
+    #             ('color', 'white'),
+    #             ('font-weight', 'bold'),
+    #             ('text-align', 'center')]
+    #     },
+    #     {
+    #         'selector': 'td',
+    #         'props': [
+    #             ('text-align', 'center'),   # ✅ أهم سطر
+    #             ('vertical-align', 'middle')]
+    #     },
+    #     {
+    #         'selector': 'tr:last-child',
+    #         'props': [
+    #             ('background-color', '#e5e7eb'),
+    #             ('font-weight', 'bold')]
+    #     }])
+    # .map(collected_color, subset=['order_collected_%'])
+    # .map(cancelled_color, subset=['order_cancelled_%'])
+    # )
     st.markdown("---")
     # ------------------------
     # Sidebar Filters
@@ -314,11 +314,11 @@ if page == 'Clinic Overview':
                                       'order_collected_%' : '{:,.2f}',
                                      'order_cancelled_%' : '{:,.2f}',
                                      'order_pending_%' :'{:,.2f}'}))
-    elif selceted_month == 'Jan':
-        st.dataframe(styled_table_01.format({'netvalue': '{:,.2f}',
-                                      'order_collected_%' : '{:,.2f}',
-                                     'order_cancelled_%' : '{:,.2f}',
-                                     'order_pending_%' :'{:,.2f}'}))
+    # elif selceted_month == 'Jan':
+    #     st.dataframe(styled_table_01.format({'netvalue': '{:,.2f}',
+    #                                   'order_collected_%' : '{:,.2f}',
+    #                                  'order_cancelled_%' : '{:,.2f}',
+    #                                  'order_pending_%' :'{:,.2f}'}))
     
     selected_clinic = st.sidebar.multiselect("Select Clinic(s):", sorted(df['clinic'].unique()))
     selected_status = st.sidebar.multiselect("Select Status:", sorted(df['status'].unique()))
