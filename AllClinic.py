@@ -1164,8 +1164,7 @@ if page == 'PHs Overview':
             fig = px.line(
                 filtered_data_store,
                x = 'store_code', y = 'netvalue', facet_col = 'prescription_method', markers = True,
-                title="Stores Share by NetValue",color_discrete_sequence=['#FFCC00', '#B13BFF']
-            )
+                title="Stores Share by NetValue",color_discrete_sequence=['#000B58', '#003161', '#006A67'])
             st.plotly_chart(fig, use_container_width=True)
     st.markdown("""---""")
     st.markdown("""
